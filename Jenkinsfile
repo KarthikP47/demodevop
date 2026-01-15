@@ -39,7 +39,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "<none>"
+        IMAGE_NAME = "react-ci-app"
         CONTAINER_NAME = "awesome_northcutt"
     }
 
@@ -54,9 +54,13 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t %IMAGE_NAME% .'
+                bat """
+                docker build -t %IMAGE_NAME% .
+                """
             }
         }
+        
+
 
         stage('Stop Old Container') {
             steps {
